@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SkyView UAO</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+      /* Fondo general */
+      body {
+        background: linear-gradient(135deg, #87cefa, #e0f3ff, #ffffff);
+        background-size: 400% 400%;
+        animation: gradientMove 12s ease infinite;
+        min-height: 100vh;
+        display: block;
+        text-align: center;
+      }
+
+      @keyframes gradientMove {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: radial-gradient(
+          rgba(255, 255, 255, 0.5) 1px,
+          transparent 1px
+        );
+        background-size: 50px 50px;
+        animation: float 6s linear infinite;
+        z-index: -1;
+        opacity: 0.4;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translate(0, 0);
+        }
+        100% {
+          transform: translate(50px, 50px);
+        }
+      }
+
+      
+
+      /* Intro */
+      .intro-section {
+        max-width: 900px;
+        margin: 40px auto;
+        text-align: center;
+        padding: 0 20px;
+      }
+
+      .intro-section h1 {
+        font-size: 2.4rem;
+        margin-bottom: 10px;
+        color: #1d3557;
+      }
+
+      .intro-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 30px;
+        color: #444;
+      }
+
+      .info-cards {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .card {
+        background: #ffffff;
+        padding: 20px;
+        width: 280px;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: 0.3s;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+      }
+
+      .card .icon {
+        font-size: 2.4rem;
+        margin-bottom: 10px;
+      }
+
+      .card h3 {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+        color: #1d3557;
+      }
+
+      /* Tarjeta formulario */
+      .card-custom {
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+          box-shadow 0.3s ease;
+      }
+
+      .card-custom:hover {
+        transform: translateY(-6px) scale(1.02);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
+      }
+
+      .icon-lg {
+        font-size: 3.5rem;
+      }
+
+      .title-main {
+        font-weight: 700;
+        font-size: 1.9rem;
+        color: #0a3d62;
+      }
+
+      .subtitle {
+        color: #145a87;
+        font-size: 1rem;
+        margin-top: -10px;
+      }
+
+      /* Resultado */
+      .result-wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 18px;
+      }
+
+      .result-card {
+        background: white;
+        padding: 15px;
+        border-radius: 12px;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+      }
+
+      .result-image {
+        width: 400px;
+        height: 400px;
+        max-width: 90%;
+        border-radius: 14px;
+        margin-top: 15px;
+      }
+
+      .footer-custom {
+        margin-top: auto; /* ← hace que el footer se vaya al fondo */
+        width: 100%;
+        padding: 18px 0;
+        text-align: center;
+        color: #1d3557;
+        font-size: 0.95rem;
+        background: rgba(255, 255, 255, 0.55);
+        backdrop-filter: blur(6px);
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+      }
+    </style>
+  </head>
+
+  <body>
+    
+
+    <div class="container main-layout">
+      <div class="row">
+        <!-- ===================== COLUMNA IZQUIERDA ===================== -->
+        <div class="col-lg-6 col-md-12">
+          <section class="intro-section">
+            <h1>Factor de Visión del Cielo (SVF)</h1>
+            <p class="intro-subtitle">
+              Una herramienta para analizar el impacto de la morfología urbana
+              en el microclima de la Universidad Autónoma de Occidente.
+            </p>
+
+            <div class="info-cards">
+              <div class="card">
+                <div class="icon">☀️</div>
+                <h3>¿Qué es el SVF?</h3>
+                <p>
+                  Mide qué tanto cielo es visible desde un punto urbano. Un SVF
+                  alto indica buena ventilación y disipación de calor.
+                </p>
+              </div>
+
+              <div class="card">
+                <div class="icon">🌡️</div>
+                <h3>¿Por qué importa?</h3>
+                <p>
+                  Influye en la Isla de Calor Urbana (ICU), el confort térmico y
+                  la calidad ambiental.
+                </p>
+              </div>
+
+              <div class="card">
+                <div class="icon">🏙️</div>
+                <h3>¿Qué hace esta herramienta?</h3>
+                <p>
+                  Segmenta el cielo usando YOLO e identifica estructuras para
+                  calcular el porcentaje de cielo visible.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- IMPORTANCIA -->
+          <section class="mt-5" style="padding: 0 10px">
+            <h2
+              class="text-center mb-3"
+              style="color: #1d3557; font-weight: 700"
+            >
+              ¿Por qué este proyecto es importante?
+            </h2>
+
+            <p style="text-align: justify">
+              El SVF es clave para entender cómo la forma urbana afecta la
+              ventilación, la iluminación y el confort térmico del campus UAO.
+            </p>
+
+            <ul style="text-align: left; margin-left: 25px">
+              <li>Reduce la <strong>Isla de Calor Urbana</strong>.</li>
+              <li>Mejora el <strong>confort térmico</strong>.</li>
+              <li>Optimiza la <strong>ventilación natural</strong>.</li>
+              <li>Apoya el <strong>diseño sostenible</strong>.</li>
+            </ul>
+          </section>
+        </div>
+
+        <!-- ===================== COLUMNA DERECHA: FORMULARIO ===================== -->
+        <div
+          class="col-lg-6 col-md-12 d-flex flex-column align-items-center gap-3"
+        >
+          <div
+            class="card p-4 card-custom text-center mt-3"
+            style="max-width: 420px; width: 100%"
+          >
+            <div class="icon-lg mb-2">☁️</div>
+            <h1 class="title-main">SkyView UAO</h1>
+            <p class="subtitle">Segmentación del cielo para análisis urbano</p>
+
+            <form
+              class="mt-4"
+              action="/"
+              method="post"
+              enctype="multipart/form-data"
+              onsubmit="mostrarLoader()"
+            >
+              <input
+                class="form-control"
+                type="file"
+                name="imagefile"
+                required
+              />
+              <button class="btn btn-primary mt-3 w-100" type="submit">
+                Procesar imagen
+              </button>
+            </form>
+          </div>
+
+          <!-- ===================== RESULTADO ===================== -->
+          {% if result_image %}
+          <div class="result-wrapper">
+            <div class="result-card">
+              <h6 class="mb-2">Resultado de la segmentación</h6>
+
+              <img
+                src="data:image/png;base64,{{ result_image }}"
+                class="result-image"
+                alt="Resultado segmentación"
+              />
+
+              {% if svf is defined %}
+              <div class="mt-3">
+                <button
+                  class="btn btn-success w-100"
+                  onclick="mostrarSVF('{{ svf }}')"
+                >
+                  Calcular SVF
+                </button>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= SWEETALERT SVF ================= -->
+    <script>
+      function interpretarSVF(valor) {
+        if (valor >= 0.7) {
+          return "El área tiene una alta exposición al cielo. Excelente ventilación y baja acumulación de calor.";
+        }
+        if (valor >= 0.45) {
+          return "El SVF es moderado. Hay ventilación aceptable, pero también zonas donde se retiene calor.";
+        }
+        return "El SVF es bajo. La morfología urbana favorece la acumulación de calor y limita el flujo de aire.";
+      }
+
+      function mostrarSVF(svf) {
+        let porcentaje = (svf * 100).toFixed(1);
+        let interpretacion = interpretarSVF(svf);
+
+        Swal.fire({
+          title: `SVF: ${porcentaje}%`,
+          html: `<p style="text-align:left; font-size:16px;"><strong>Interpretación:</strong><br>${interpretacion}</p>`,
+          icon: "info",
+          confirmButtonText: "Entendido",
+          width: "420px",
+        });
+      }
+    </script>
+
+    <!-- SWEETALERT PROCESADO -->
+    {% if success %}
+    <script>
+      Swal.fire({
+        title: "Imagen procesada",
+        text: "La segmentación se ha realizado correctamente.",
+        icon: "success",
+        confirmButtonText: "OK",
+      }).then(() => {
+        window.history.replaceState({}, document.title, "/");
+      });
+    </script>
+    {% endif %}
+
+    <script>
+      function mostrarLoader() {
+        Swal.fire({
+          title: "Procesando imagen...",
+          text: "Por favor espera unos segundos",
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+          didOpen: () => {
+            Swal.showLoading();
+          },
+        });
+      }
+    </script>
+
+    <footer class="footer-custom mt-5">
+      <p>
+        Proyecto realizado por <strong>Niko Bonilla</strong> y
+        <strong>Juan Pablo Hurtado</strong> Derechos reservados © 2025
+      </p>
+    </footer>
+  </body>
+</html>
