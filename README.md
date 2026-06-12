@@ -147,33 +147,7 @@ git clone https://github.com/juanpabloh18/SkyView.git
 cd SkyView
 ```
 
-### 2. Crear entorno virtual
-
-```bash
-python -m venv venv
-```
-
-Activar:
-
-Windows:
-
-```bash
-venv\Scripts\activate
-```
-
-Linux / Mac:
-
-```bash
-source venv/bin/activate
-```
-
-### 3. Instalar dependencias
-
-```bash
-pip install -r requirements.txt
-```
-
-O manualmente:
+### 2. Instalar dependencias
 
 ```bash
 pip install flask ultralytics opencv-python numpy
